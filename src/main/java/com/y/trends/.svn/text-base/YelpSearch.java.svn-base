@@ -1,0 +1,26 @@
+package com.yahoo.trends;
+
+public class YelpSearch {
+
+	public static void main(String[] args) {
+
+	   String consumerKey = "fOvV4Pl3YhbdBZ-e-JQfiw";
+	   String consumerSecret = "xlLn6hqm40MZtPiMEUy_onYclH0";
+	   String token = "8IsZa5SkR-SCdkwdhT3F-Ig92p2Q4sup";
+	   String tokenSecret = "MNz-op4I92RRyt-ave-4Fb04k98";
+
+	   Code yelp = new Code(consumerKey, consumerSecret, token, tokenSecret);
+	   String response = yelp.search("hotels", 37.7833, -122.4167);
+	   
+	  //
+	   System.out.println(response);
+	   
+	   
+		}
+
+	
+
+		
+		
+	
+}

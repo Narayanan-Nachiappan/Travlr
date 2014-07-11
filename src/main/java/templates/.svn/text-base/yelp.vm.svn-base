@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>Sugi</title>
+</head>
+<style>
+#res{
+	color:white;
+}
+a {
+ color:grey;
+}
+</style>
+<body>
+
+#foreach ($iter in $TrendingInfo)
+    <H3> <a href=$iter.url>$iter.name</a> </H3>
+	<table id="res">
+    <tr>
+        <td>Address</td>
+        <td>$iter.address</td>
+    </tr>    
+    <tr>
+        <td>City</td>
+        <td>$iter.city</td>
+    </tr>    
+    <tr>
+        <td>Phone</td>
+        <td>$iter.phone</td>
+    </tr>    
+    <tr>
+        <td>Reviews</td>
+        <td>$iter.review</td>
+    </tr>    
+    <tr>
+        <td>Rating</td>
+        <td>$iter.rating stars</td>
+    </tr>    
+    <tr>
+        <td>Snippet</td>
+        <td>'$iter.snippet'</td>
+    </tr>
+    </table>    
+#end
+</body>
+<html>

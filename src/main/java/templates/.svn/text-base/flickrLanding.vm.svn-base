@@ -1,0 +1,266 @@
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+        <script src="http://localhost:8080/docs/scripts/galleria/galleria-1.3.2.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="http://localhost:8080/docs/scripts/galleria/themes/classic/galleria.classic.css">
+		 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+  	<script type="text/javascript" src="http://localhost:8080/docs/scripts/galleria/themes/classic/galleria.classic.min.js"></script>
+	  <link rel="stylesheet" type="text/css"
+        href="http://localhost:8080/docs/css/standalone.css"/>
+
+  <link rel="stylesheet" type="text/css"
+      href="http://localhost:8080/docs/css/overlay-apple.css"/>
+		<script>
+  $(function() {
+    $("button[rel]").overlay({mask: '#000', effect: 'apple'});
+  });
+</script>
+	
+	<style>
+#custom {
+    background-image:url(http://localhost:8080/docs/img/box-512.png);
+    width:512px;
+    height:531px;
+    padding:0px;
+}
+#custom div.close {
+    right:-15px;
+    top:-10px;
+}
+#petrol {
+    background-image:url(http://localhost:8080/docs/img/petrol.png);
+    color:#fff;
+}
+#apple {
+    background-image:url(http://localhost:8080/docs/img/apple.png);
+    color:#fff;
+}
+#weatherinfo{
+   
+    color:#fff;
+    
+}
+#moreinfo{
+    color:#fff;
+    
+    }
+    #poiInfo{
+    color:#fff;
+    
+    }
+        #shoppinginfo{
+    color:#fff;
+    
+    }
+        #restaurantsinfo{
+    color:#fff;
+    
+    }
+    #aboutinfo{
+    color:#fff;
+    }
+        #eventsinfo{
+    color:#fff;
+    }
+
+#bt1 {
+    padding: 15px 40px;
+    /*give the background a gradient*/
+    background:#424242; /*fallback for browsers that don't support gradients*/
+    background: -webkit-linear-gradient(top, #424242, #424242);
+    background: -moz-linear-gradient(top, #424242, #424242);
+    background: -o-linear-gradient(top, #424242, #424242);
+    background: linear-gradient(top, #424242, #424242);
+    border:2px outset #dad9d8;
+    /*style the text*/
+    font-family:Andika, Arial, sans-serif; /*Andkia is available at http://www.google.com/webfonts/specimen/Andika*/
+    font-size:1.6em;
+    color:#fff;
+    text-shadow: 0px 1px 10px #000;
+    /*add to small curve to the corners of the button*/
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    /*give the button a drop shadow*/
+    -webkit-box-shadow: rgba(0, 0, 0, .55) 0 1px 6px;
+    -moz-box-shadow: rgba(0, 0, 0, .55) 0 1px 6px;
+    box-shadow: rgba(0, 0, 0, .55) 0 1px 6px;
+    }
+    /****NOW STYLE THE BUTTON'S HOVER STATE***/
+    input#shiny:hover, input#shiny:focus {
+    border:2px solid #dad9d8;
+    }
+</style>
+    </head>
+    <body>
+        <div class="galleria" style="height:100%;width:85%;float:left">
+            <!-- Iterate java object from context-->
+          	<img src="http://farm3.staticflickr.com/2063/2534892448_7afbcc57f9_b.jpg" id="Statue of Liberty,NY"/>
+          	<img src="http://farm1.staticflickr.com/98/217288408_40e048e6eb_b.jpg" id="Yahoo headquarters,CA"/>
+          	<img src="http://farm3.staticflickr.com/2781/4034907124_e2a367c482_b.jpg" id="Georgia Aquarium,GA"/>
+          	<img src="http://farm3.staticflickr.com/2767/4305538040_ee9861e2f6_b.jpg" id="Starved Rock State Park,IL"/>
+           <img src="http://farm3.staticflickr.com/2893/10723978846_7a53226058_b.jpg" id="Jacksonville Landing,FL"/>
+            <img src="http://farm5.staticflickr.com/4048/4361329277_d47933307e_z.jpg?zz=1" id="Petronas Twin Towers,Malaysia" alt="Petronas Twin Towers"/>
+            <img src="http://farm5.staticflickr.com/4045/4211208314_4db910cd3a_z.jpg?zz=1" id="51.318597~-116.190375~29375228">
+            <img src="http://farm6.staticflickr.com/5060/5544935601_e4f8f457ed_b.jpg" id="51.318597~-116.190375~29375228">
+        </div>
+        
+        <div style="height:100%;width:15%;float:right">
+        <table>
+          <tr><td height="100"><button rel="#poiInfo" type="button" id="bt1" style="width:100%" onclick=setPoiInfo()>Point of interest</button></td></tr>
+  <tr><td height="100"><button rel="#eventsinfo" type="button" id="bt1" style="width:100%" onclick=setEventsInfo()>	Events</button></td></tr>
+	  <tr><td height="100"><button rel="#weatherinfo" type="button" id="bt1" style="width:100%" onclick=setWeatherInfo()>Weather</button></td></tr>
+		  <tr><td height="100"><button rel="#shoppinginfo" type="button" id="bt1" style="width:100%" onclick=setShoppingInfo()>Shopping</button></td></tr>
+		  <tr><td height="100"><button rel="#restaurantsinfo" type="button" id="bt1" style="width:100%" onclick=setRestaurantsInfo()>Restaurants</button></td></tr>
+	  <tr><td height="100"><button rel="#moreinfo" type="button" id="bt1" style="width:100%" onclick=setMoreInfo()>More-Info</button></td></tr>
+       <table>
+        
+        <script>
+        var weatherarray = new Array();
+weatherarray['Statue of Liberty,NY'] = 'http://www.accuweather.com/en/us/new-york-ny/10007/weather-forecast/349727';
+weatherarray['Yahoo headquarters,CA'] = 'http://www.accuweather.com/en/us/sunnyvale-ca/94086/weather-forecast/331979';
+weatherarray['Georgia Aquarium,GA'] = 'http://www.accuweather.com/en/us/atlanta-ga/30303/weather-forecast/348181';
+weatherarray['Starved Rock State Park,IL'] = 'http://www.accuweather.com/en/us/starved-rock-state-park-il/61350/weather-forecast/18174_poi';
+weatherarray['Jacksonville Landing,FL'] = 'http://www.accuweather.com/en/us/florida-city-fl/33034/weather-forecast/332389';
+weatherarray['Petronas Twin Towers,Malaysia'] = 'http://www.accuweather.com/en/my/kuala-lumpur/233776/weather-forecast/233776';
+        
+        var descriptionarray = new Array();
+        descriptionarray['Statue of Liberty,NY'] = 'The Statue of Liberty (Liberty Enlightening the World French: La Liberté éclairant le monde) is a colossal neoclassical sculpture on Liberty Island in the middle of New York Harbor, in Manhattan, New York City. The statue, designed by Frédéric Auguste Bartholdi and dedicated on October 28, 1886, was a gift to the United States from the people of France. The statue is of a robed female figure representing Libertas, the Roman goddess of freedom, who bears a torch and a tabula ansata (a tablet evoking the law) upon which is inscribed the date of the American Declaration of Independence, July 4, 1776';
+descriptionarray['Yahoo headquarters,CA'] = 'Yahoo! Inc. is an American multinational Internet corporation headquartered in Sunnyvale, California. It is globally known for its Web portal, search engine Yahoo Search, and related services, including Yahoo Directory, Yahoo Mail, Yahoo News, Yahoo Finance, Yahoo Groups, Yahoo Answers, advertising, online mapping, video sharing, fantasy sports and its social media website. It is one of the most popular sites in the United States.[3] According to news sources, roughly 700 million people visit Yahoo websites every month.[4][5] Yahoo itself claims it attracts "more than half a billion consumers every month in more than 30 languages.';
+descriptionarray['Georgia Aquarium,GA'] = 'The Georgia Aquarium (Atlanta, Georgia) houses 120,000 animals, representing 500 species, in 8.5 million US gallons (32,000 m3) of marine and fresh water it was the worlds largest aquarium when it opened in 2005.[2] Businessman Bernard Marcus credits his 60th birthday dinner, held at the Monterey Bay Aquarium, with inspiring him to build a great aquarium for Atlanta; his subsequent $250 million donation provided the bulk of the money needed to build and stock the new facility.The Aquariums notable specimens include four young whale sharks, four beluga whales, eleven bottlenose dolphins and four manta rays.';
+descriptionarray['Starved Rock State Park,IL'] = 'Starved Rock State Park is a state park in the U.S. state of Illinois, characterized by the many canyons within its 2,630 acres (1,064 ha). Located just southeast of the village of Utica, in Deer Park Township, LaSalle County, Illinois, along the south bank of the Illinois River, the park hosts over two million visitors annually.In the pre-Columbian era, the area was home to Native Americans, particularly the Kaskaskia who lived in the Grand Village of the Illinois across the river. Louis Jolliet and Jacques Marquette were the first Europeans recorded as exploring the region, and by 1683, the French had established Fort St. Louis on a large sandstone butte overlooking the river. Later, according to a local legend, a group of Illinois Confederation (Illini) pursued by the Ottawa and Potawatomi fled to the butte in the late 18th century.';
+descriptionarray['Jacksonville Landing,FL'] = 'The Jacksonville Landing is a 126,000 square feet (11,706 m2) shopping, tattoo, dining, clubbing, and historic museum complex in downtown Jacksonville, Florida.[1] It was built by the Rouse Company at a cost of $37.5 million and opened in 1987.[2] It has been compared to New York Citys South Street Seaport, Bostons Faneuil Hall or Miamis Bayside Marketplace,[3] all developed by Rouse.';
+descriptionarray['Petronas Twin Towers,Malaysia'] = 'The Petronas Towers, also known as the Petronas Twin Towers (Malay: Menara Petronas, or Menara Berkembar Petronas) are twin skyscrapers in Kuala Lumpur, Malaysia. According to the CTBUHs official definition and ranking, they were the tallest buildings in the world from 1998 to 2004 until surpassed by Taipei 101, but they remain the tallest twin buildings in the world.[2] The buildings are the landmark of Kuala Lumpur with nearby Kuala Lumpur Tower.';
+        
+          var shopres = new Array();
+shopres['Statue of Liberty,NY'] = 'NY';
+shopres['Yahoo headquarters,CA'] = 'CA';
+shopres['Georgia Aquarium,GA'] = 'GA';
+shopres['Starved Rock State Park,IL'] = 'IL';
+shopres['Jacksonville Landing,FL'] = 'FL';
+shopres['Petronas Twin Towers,Malaysia'] = 'http://www.accuweather.com/en/my/kuala-lumpur/233776/weather-forecast/233776';
+        
+        
+        
+        	var currentPic;
+            Galleria.loadTheme('http://localhost:8080/docs/scripts/galleria/themes/classic/galleria.classic.min.js');
+            Galleria.run('.galleria');
+            Galleria.on('image', function(e) {
+   				 currentPic = ( e.galleriaData.original.id );
+			});
+            function btnclick(){
+            	window.alert(currentPic);
+            }
+            function setMoreInfo(){
+                     var myNode = document.getElementById("moreinfo");
+					 myNode.innerHTML = ''; 
+					 var iframe = document.createElement('iframe');
+					 iframe.src ="http://search.yahoo.com/search;_ylt=A0SO8zBAzYVStykAX_il87UF;_ylc=X1MDOTU4MTA0NjkEX3IDMgRiY2sDOHAwZmQ2cDk4Yml2MCUyNmIlM0QzJTI2cyUzRDRoBGNzcmNwdmlkAzJjS1ZNTkJITHI2TWdlMDJVb1hMNEFyYzJKRTJEMUtGelVBQUNTczIEZnIDc2ZwBGZyMgNzYS1ncARncHJpZANncDh6TFM3d1JTS3JwT2xPRWxERGlBBG10ZXN0aWQDbnVsbARuX3JzbHQDMARuX3N1Z2cDMTAEb3JpZ2luA3NlYXJjaC55YWhvby5jb20EcG9zAzEEcHFzdHIDamFja3NGTARwcXN0cmwDNwRxc3RybAMxNQRxdWVyeQNqYWNrc29udmlsbGUgZmwEdF9zdG1wAzEzODQ1MDA1NDk5OTQEdnRlc3RpZANudWxs?p="+currentPic+"&fr=sfp&fr2=&iscqry=" ;
+				    iframe.width=1000;
+				    iframe.height = 800;
+				    // iframe.id = "moreinfoiframe";
+					 //iframe.onload = autoResize('moreinfoiframe');
+					 myNode.appendChild(iframe);  	
+					// window.alert('child added');
+            }
+            function setWeatherInfo(){
+                     var myNode = document.getElementById("weatherinfo");
+					 myNode.innerHTML = ''; 
+					 var iframe = document.createElement('iframe');
+					 iframe.src =weatherarray[currentPic] ;
+				    iframe.width=1000;
+				    iframe.height = 800;
+				    // iframe.id = "moreinfoiframe";
+					 //iframe.onload = autoResize('moreinfoiframe');
+					 myNode.appendChild(iframe);  	
+					// window.alert('child added');
+            }
+            function setPoiInfo(){
+                     var myNode = document.getElementById("poiInfo");
+					 myNode.innerHTML = ''; 
+					 var iframe = document.createElement('iframe');
+					 iframe.src ="http://localhost:8000/travlr/yelppoi?place="+shopres[currentPic];
+				    iframe.width=1000;
+				    iframe.height = 800;
+				    // iframe.id = "moreinfoiframe";
+					 //iframe.onload = autoResize('moreinfoiframe');
+					 myNode.appendChild(iframe);  	
+					// window.alert('child added');
+            }
+             function setEventsInfo(){
+                     var myNode = document.getElementById("eventsinfo");
+					 myNode.innerHTML = ''; 
+					 var iframe = document.createElement('iframe');
+					 iframe.src ="http://localhost:8000/travlr/yelpevents?place="+shopres[currentPic];
+				    iframe.width=1000;
+				    iframe.height = 800;
+				    // iframe.id = "moreinfoiframe";
+					 //iframe.onload = autoResize('moreinfoiframe');
+					 myNode.appendChild(iframe);  	
+					// window.alert('child added');
+            }
+             function setShoppingInfo(){
+                     var myNode = document.getElementById("shoppinginfo");
+					 myNode.innerHTML = ''; 
+					 var iframe = document.createElement('iframe');
+					 iframe.src ="http://localhost:8000/travlr/yelpshopping?place="+shopres[currentPic];
+				    iframe.width=1000;
+				    iframe.height = 800;
+				    // iframe.id = "moreinfoiframe";
+					 //iframe.onload = autoResize('moreinfoiframe');
+					 myNode.appendChild(iframe);  	
+					// window.alert('child added');
+            }
+             function setRestaurantsInfo(){
+                     var myNode = document.getElementById("restaurantsinfo");
+					 myNode.innerHTML = ''; 
+					 var iframe = document.createElement('iframe');
+					 iframe.src ="http://localhost:8000/travlr/yelprestaurants?place="+shopres[currentPic];
+				    iframe.width=1000;
+				    iframe.height = 800;
+				    // iframe.id = "moreinfoiframe";
+					 //iframe.onload = autoResize('moreinfoiframe');
+					 myNode.appendChild(iframe);  	
+					// window.alert('child added');
+            }
+            function setAboutInfo(){
+                     var myNode = document.getElementById("aboutinfo");
+					 myNode.innerHTML = ''; 
+					 var p = document.createElement('p');
+					 p.innerHTML=descriptionarray[currentPic];
+				     p.style.fontsize = 70;
+				     p.style.paddingTop = 70;
+					 myNode.appendChild(p);  	
+            }
+            
+        </script>
+        
+        <div class="apple_overlay" width="100%" height="100%" align="center"  id="moreinfo">
+        
+        </div>
+        <div class="apple_overlay" width="100%" height="100%" align="center" id="weatherinfo">
+        
+        </div>
+        <div class="apple_overlay" width="100%" height="100%"  id="aboutinfo">
+        
+        </div>
+        <div class="apple_overlay" width="100%" height="100%" align="center"  id="poiInfo">
+        
+        </div>
+         <div class="apple_overlay" width="100%" height="100%" align="center"  id="eventsinfo">
+        
+        </div>
+         <div class="apple_overlay" width="100%" height="100%" align="center"  id="shoppinginfo">
+        
+        </div>
+         <div class="apple_overlay" width="100%" height="100%" align="center"  id="restaurantsinfo">
+        
+        </div>
+        <div class="apple_overlay" id="apple">
+        asfsafsa
+        </div>
+  
+  
+</div>
+    </body>
+</html>

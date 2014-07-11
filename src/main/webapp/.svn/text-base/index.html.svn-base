@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+<!--
+   This is a jQuery Tools standalone demo. Feel free to copy/paste.
+   http://flowplayer.org/tools/demos/
+
+   Do *not* reference CSS files and images from flowplayer.org when in
+   production Enjoy!
+-->
+<head>
+  <title>jQuery Tools standalone demo</title>
+
+    <!-- include the Tools -->
+  <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+  
+  <!-- standalone page styling (can be removed) -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="stylesheet" type="text/css"
+        href="css/standalone.css"/>
+
+  <link rel="stylesheet" type="text/css"
+      href="css/overlay-apple.css"/>
+<!-- override styles for some of the overlays -->
+<style>
+#custom {
+    background-image:url(img/box-512.png);
+    width:512px;
+    height:531px;
+    padding:0px;
+}
+#custom div.close {
+    right:-15px;
+    top:-10px;
+}
+#petrol {
+    background-image:url(img/petrol.png);
+    color:#fff;
+}
+#apple {
+    background-image:url(img/apple.png);
+    color:#fff;
+    padding:50px 70px;
+}
+
+#bt1 {
+    padding: 30px 150px;
+    /*give the background a gradient*/
+    background:#424242; /*fallback for browsers that don't support gradients*/
+    background: -webkit-linear-gradient(top, #424242, #d67600);
+    background: -moz-linear-gradient(top, #424242, #d67600);
+    background: -o-linear-gradient(top, #424242, #d67600);
+    background: linear-gradient(top, #424242, #d67600);
+    border:2px outset #dad9d8;
+    /*style the text*/
+    font-family:Andika, Arial, sans-serif; /*Andkia is available at http://www.google.com/webfonts/specimen/Andika*/
+    font-size:1.6em;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:#fff;
+    text-shadow: 0px 1px 10px #000;
+    /*add to small curve to the corners of the button*/
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    /*give the button a drop shadow*/
+    -webkit-box-shadow: rgba(0, 0, 0, .55) 0 1px 6px;
+    -moz-box-shadow: rgba(0, 0, 0, .55) 0 1px 6px;
+    box-shadow: rgba(0, 0, 0, .55) 0 1px 6px;
+    }
+    /****NOW STYLE THE BUTTON'S HOVER STATE***/
+    input#shiny:hover, input#shiny:focus {
+    border:2px solid #dad9d8;
+    }
+</style>
+</head>
+<body><!-- overlay triggers. overlay is referenced in the 'rel' attribute -->
+<table>
+  <tr><td height="100"><button rel="#apple" type="button" id="bt1">About</button></td></tr>
+  <tr><td height="100"><button rel="#apple" type="button" id="bt1">Events</button></td></tr>
+  <tr><td height="100"><button rel="#apple" type="button" id="bt1">More Info</button></td></tr>
+  <tr><td height="100"><button rel="#apple" type="button" id="bt1">Weather</button></td></tr>
+  <tr><td height="100"><button rel="#apple" type="button" id="bt1">Points Of Interest</button></td></tr>
+  <tr><td height="100"><button rel="#apple" type="button" id="bt1">Near By</button></td></tr>
+</table>
+
+<!-- each overlay is initialized with this single JavaScript call -->
+<script>
+  $(function() {
+    $("button[rel]").overlay({mask: '#000', effect: 'apple'});
+  });
+</script>
+
+<div class="apple_overlay" id="apple">
+  <h2 style="margin:0px">Here is my overlay</h2>
+
+<p>
+  <strong>Sit amet felis non sem eleifend rhoncus. Mauris imperdiet
+  consequat neque, ac molestie eros venenatis pharetra. In et leo
+  nulla. Vivamus feugiat consequat augue nec vulputate. Vestibulum a
+  ipsum et turpis viverra accumsan.</strong>
+</p>
+<p>
+  Cras sit amet est purus, a consectetur augue. Ut scelerisque
+  consequat dictum. Donec in nulla risus. Nulla metus elit, tempus vel
+  fermentum sed, dictum eu justo. Etiam et nulla ligula. Integer in
+  tincidunt tellus. Cras cursus, lectus id tincidunt tincidunt, eros
+  arcu cursus velit, a euismod justo lectus non quam. Ut euismod erat
+  eu elit hendrerit.
+</p>
+<p>
+  Nulla vitae tellus justo. Donec condimentum lorem ac enim blandit id
+  lobortis felis pellentesque. Mauris nulla velit, ultrices vel tempor
+  vitae, sollicitudin vitae ligula. Vestibulum nec ullamcorper
+  turpis. Aliquam aliquam aliquam pharetra.
+</p>
+<p style="color:#666">
+  Cras sit amet est purus, a consectetur augue. Ut scelerisque
+  consequat dictum. Donec in nulla risus. Nulla metus elit, tempus vel
+  fermentum sed, dictum eu justo. Etiam et nulla ligula. Integer in
+  tincidunt tellus. Cras cursus, lectus id tincidunt tincidunt, eros
+  arcu cursus velit, a euismod justo lectus non quam. Ut euismod erat
+  eu elit hendrerit a aliquet odio consequat.
+</p>
+
+</div>
+</body>
+</html>

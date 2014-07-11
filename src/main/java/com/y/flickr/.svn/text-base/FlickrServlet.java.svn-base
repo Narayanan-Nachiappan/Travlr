@@ -1,0 +1,131 @@
+package com.yahoo.flickr;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.velocity.Template;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.context.Context;
+import org.apache.velocity.exception.ParseErrorException;
+import org.apache.velocity.exception.ResourceNotFoundException;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+import org.apache.velocity.tools.view.VelocityViewServlet;
+
+import com.yahoo.consts.Constants;
+import com.yahoo.flickr.favorites.FlickrFavoritesHandler;
+import com.yahoo.flickr.favorites.YelpHandler;
+
+public class FlickrServlet extends VelocityViewServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	static VelocityEngine ve;
+
+	static {
+		System.err.println("FlickrServlet");
+		System.err.println("Velocity Engine Initialized");
+		ve = new VelocityEngine();
+		ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+		ve.setProperty("classpath.resource.loader.class",
+				ClasspathResourceLoader.class.getName());
+		try {
+			ve.init();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/*
+	 * The Servlet
+	 */
+	public Template handleRequest(HttpServletRequest request,
+			HttpServletResponse response, Context ctx) {
+		Template template = null;
+		String requestPath = getRequestPath(request.getRequestURL());
+		if(Constants.REQ_LANDING.equals(requestPath)){
+			 template = handleLanding(ctx);
+		}else if(Constants.REQ_YELP_POI.equals(requestPath) || Constants.REQ_YELP_EVENTS.equals(requestPath) 
+				|| Constants.REQ_YELP_SHOPPING.equals(requestPath) || Constants.REQ_YELP_RESTAURANTS.equals(requestPath)){
+			 template = handleYelp(request.getParameter("place"),ctx,requestPath);
+		}
+		
+		return template;
+		
+	}
+
+	
+
+	private String getRequestPath(StringBuffer requestURL) {
+		// TODO Auto-generated method stub
+		String req[] =  requestURL.toString().split("/");
+		return req[req.length-1];
+	}
+	
+	private Template handleYelp(String place,Context ctx,String reqPath) {
+		// TODO Auto-generated method stub
+		Template yelpView = null;
+		YelpHandler handler = new YelpHandler();
+		handler.handle(place,ctx,reqPath);
+
+		try {
+			// Open the template 'hello.vm'
+			yelpView = ve.getTemplate("templates/yelp.vm");
+		} catch (ParseErrorException pee) {
+			System.out.println(" parse error for template " + pee);
+		} catch (ResourceNotFoundException rnfe) {
+			System.out.println("template not found " + rnfe);
+		} catch (Exception e) {
+			System.out.println("Error " + e);
+		}
+		System.err.println(yelpView.getName());
+		return yelpView;	}
+	
+	private Template handleLanding(Context ctx){
+		Template flickrView = null;
+		FlickrFavoritesHandler handler = new FlickrFavoritesHandler();
+		handler.handle(ctx);
+
+		try {
+			// Open the template 'hello.vm'
+			flickrView = ve.getTemplate("templates/flickrLanding.vm");
+		} catch (ParseErrorException pee) {
+			System.out.println(" parse error for template " + pee);
+		} catch (ResourceNotFoundException rnfe) {
+			System.out.println("template not found " + rnfe);
+		} catch (Exception e) {
+			System.out.println("Error " + e);
+		}
+		System.err.println(flickrView.getName());
+		return flickrView;
+	}
+
+}
+
+// //////////
+
+/*
+ * 
+ * // protected Properties loadConfiguration(ServletConfig config ) // throws
+ * IOException, FileNotFoundException // { // Properties p = new Properties();
+ * // String path = config.getServletContext().getRealPath("/"); // if (path ==
+ * null) // { //
+ * System.out.println(" SampleServlet.loadConfiguration() : unable to " // +
+ * "get the current webapp root.  Using '/'. Please fix."); // path = "/"; // }
+ * // p.setProperty( Velocity.FILE_RESOURCE_LOADER_PATH, path ); //
+ * p.setProperty( "runtime.log", path + "flickr`_velocity.log" ); // return p;
+ * // }
+ * 
+ * // public void init(javax.servlet.ServletConfig config) // throws
+ * javax.servlet.ServletException { //
+ * System.err.println("Velocity Engine Initialized"); // ve = new
+ * VelocityEngine(); // ve.setProperty(RuntimeConstants.RESOURCE_LOADER,
+ * "classpath"); // ve.setProperty("classpath.resource.loader.class", //
+ * ClasspathResourceLoader.class.getName()); // try { // ve.init(); // // }
+ * catch (Exception e) { // // TODO Auto-generated catch block //
+ * e.printStackTrace(); // } // // }
+ */
